@@ -12,7 +12,6 @@ const PokemonList: FunctionComponent = () => {
   
   return (
     <div>
-      <h1 className="center">Pokédex</h1>
       <p className='center'>Il y a <b>{pokemons.length}</b> pokémon{pokemons.length > 1 ? 's' : ''} dans le pokédex</p>
       <div className="container"> 
         <div className="row"> 
