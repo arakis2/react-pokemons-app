@@ -6,7 +6,22 @@ import Form from '../helpers/form-form-property'
 import Field from '../helpers/form-field-property';
 import ValidationForm from '../models/validation-form';
 
-const validateForm = (form: Form): ValidationForm => {    
+const validateForm = (form: Form, isAddForm: boolean): ValidationForm => {    
+
+  if(isAddForm) {
+
+    const start = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/";
+    const end = ".png";
+
+    if(!form.picture.value.startsWith(start) || !form.picture.value.endsWith(end)) {
+      const errorMsg: string = 'L\'url n\'est pas valide.';
+      const newField: Field = { value: form.picture.value, error: errorMsg, isValid: false };
+      form = { ...form, ...{ picture: newField } };
+    } else {
+      const newField: Field = { value: form.picture.value, error: '', isValid: true };
+      form = { ...form, ...{ picture: newField } };
+    }
+  }
 
     // Validator name
     if(!/^[a-zA-Zàéè ]{3,25}$/.test(form.name.value)) {
