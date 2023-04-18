@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  reactpokemonsapp:
+    image: reactpokemonsapp
+    build:
+      context: .
+      dockerfile: ./Dockerfile

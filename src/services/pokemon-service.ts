@@ -5,10 +5,11 @@ export default class PokemonService {
 
   static pokemons:Pokemon[] = POKEMONS;
 
-  static isDev = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development');
+  static isDev = (!process.env.REACT_APP_ENVIRONMENT || process.env.REACT_APP_ENVIRONMENT.trim() === 'development');
 
   static getPokemons(): Promise<Pokemon[]> {
     if(this.isDev) {
+      console.log(`*${process.env.REACT_APP_ENVIRONMENT}*`);
       return fetch('http://localhost:3001/pokemons')
       .then(response => response.json())
       .catch(error => this.handleError(error));
